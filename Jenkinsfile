@@ -13,11 +13,11 @@ pipeline {
     agent any
 
     environment {
-        AWS_ACCOUNT_ID  = '306607894956'
+        AWS_ACCOUNT_ID  = '890608337202'
         AWS_REGION      = 'us-east-1'
-        ECR_REPO_NAME   = 'nimbus/dec25'
-        EKS_CLUSTER     = 'k8s-demo'
-        ECR_REGISTRY    = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+        ECR_REPO_NAME   = 'eks-demo'
+        EKS_CLUSTER     = 'k8s-cluster'
+        ECR_REGISTRY    = "890608337202.dkr.ecr.us-east-1.amazonaws.com/eks-demo"
         IMAGE_TAG       = "${BUILD_NUMBER}"
         FULL_IMAGE      = "${ECR_REGISTRY}/${ECR_REPO_NAME}:${IMAGE_TAG}"
     }
@@ -69,8 +69,8 @@ pipeline {
                 echo '🚀 Deploying to Amazon EKS...'
                 sh """
                     aws eks update-kubeconfig \
-                        --name ${EKS_CLUSTER} \
-                        --region ${AWS_REGION}
+                        --name ${k8s-cluster} \
+                        --region ${us-east-1}
 
                     sed -i 's|IMAGE_PLACEHOLDER|${FULL_IMAGE}|g' k8s/deployment.yaml
 
