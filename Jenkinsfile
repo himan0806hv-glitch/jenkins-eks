@@ -17,7 +17,7 @@ pipeline {
         AWS_REGION      = 'us-east-1'
         ECR_REPO_NAME   = 'eks-demo'
         EKS_CLUSTER     = 'k8s-cluster'
-        ECR_REGISTRY    = "890608337202.dkr.ecr.us-east-1.amazonaws.com/eks-demo"
+        ECR_REGISTRY    = "890608337202.dkr.ecr.us-east-1.amazonaws.com/eks-demo:2"
         IMAGE_TAG       = "${BUILD_NUMBER}"
         FULL_IMAGE      = "${ECR_REGISTRY}/${ECR_REPO_NAME}:${IMAGE_TAG}"
     }
@@ -69,8 +69,8 @@ pipeline {
                 echo '🚀 Deploying to Amazon EKS...'
                 sh """
                     aws eks update-kubeconfig \
-                        --name ${k8s-cluster} \
-                        --region ${us-east-1}
+                        --name ${EKS_CLUSTER} \
+                        --region ${AWS_REGION}
 
                     sed -i 's|IMAGE_PLACEHOLDER|${FULL_IMAGE}|g' k8s/deployment.yaml
 
