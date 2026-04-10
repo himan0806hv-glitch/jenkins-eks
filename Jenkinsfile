@@ -14,10 +14,10 @@ pipeline {
 
     environment {
         // ─── CHANGE THESE TO MATCH YOUR AWS SETUP ───
-        AWS_ACCOUNT_ID  = 'YOUR_AWS_ACCOUNT_ID'       // e.g., 123456789012
-        AWS_REGION      = 'ap-south-1'                 // e.g., us-east-1, ap-south-1
-        ECR_REPO_NAME   = 'devops-demo'                // ECR repository name
-        EKS_CLUSTER     = 'devops-demo-cluster'        // EKS cluster name
+        AWS_ACCOUNT_ID  = '306607894956'       // e.g., 123456789012
+        AWS_REGION      = 'us-east-1'                 // e.g., us-east-1, ap-south-1
+        ECR_REPO_NAME   = 'nimbus/dec25'                // ECR repository name
+        EKS_CLUSTER     = 'k8s-demo'        // EKS cluster name
         // ─── AUTO-COMPUTED (do not change) ───
         ECR_REGISTRY    = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
         IMAGE_TAG       = "${BUILD_NUMBER}"
