@@ -1,7 +1,7 @@
 pipeline {
 agent any
 
-```
+
 environment {
     AWS_ACCOUNT_ID  = '890608337202'
     AWS_REGION      = 'us-east-1'
@@ -100,6 +100,6 @@ post {
         sh "docker rmi ${ECR_REGISTRY}/${ECR_REPO_NAME}:latest || true"
     }
 }
-```
+
 
 }
