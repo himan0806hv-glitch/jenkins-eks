@@ -61,6 +61,8 @@ stages {
         steps {
             echo '🚀 Deploying to Amazon EKS...'
             sh """
+                export AWS_DEFAULT_REGION=${AWS_REGION}
+                export KUBECONFIG=/var/lib/jenkins/.kube/config
                 aws eks update-kubeconfig \
                     --name ${EKS_CLUSTER} \
                     --region ${AWS_REGION}
